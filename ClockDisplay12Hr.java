@@ -11,6 +11,9 @@
  *
  * @author Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ *
+ *boolean that changes when time switches over
+ *
  */
 public class ClockDisplay12Hr
 {
@@ -24,7 +27,7 @@ public class ClockDisplay12Hr
      */
     public ClockDisplay12Hr()
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
         updateDisplay();
     }
@@ -36,7 +39,7 @@ public class ClockDisplay12Hr
      */
     public ClockDisplay12Hr(int hour, int minute)
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
         setTime(hour, minute);
     }
