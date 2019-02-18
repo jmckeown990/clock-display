@@ -19,7 +19,10 @@ public class ClockDisplay12Hr
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
+    private String displayString;
+    private String dayTime;
+    private int count = 0;
+    private boolean swap; //simulates the actual display
 
     /**
      * Constructor for ClockDisplay objects. This constructor
@@ -53,6 +56,12 @@ public class ClockDisplay12Hr
         minutes.increment();
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
+            count = count + 1;
+            
+            if((count % 12) == 1){
+                swap = !swap;
+                count = 0;
+            }
         }
         updateDisplay();
     }
@@ -75,13 +84,27 @@ public class ClockDisplay12Hr
     {
         return displayString;
     }
-
+    
     /**
      * Update the internal string that represents the display.
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" +
-                        minutes.getDisplayValue();
+    
+    
+        if(swap == true){
+        dayTime = "pm";
+    }else{
+        dayTime = "am";    
+    }
+    
+    
+        if(hours.getValue() == 0){
+            displayString = 12 + ":" +
+                        minutes.getDisplayValue() + " " + dayTime;            
+        }else{
+            displayString = hours.getDisplayValue() + ":" +
+                        minutes.getDisplayValue() + " " + dayTime;
+                    }
     }
 }
